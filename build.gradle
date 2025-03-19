@@ -1,32 +1,49 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.3'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral() // 确保使用 Maven Central 仓库
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	runtimeOnly 'org.xerial:sqlite-jdbc:3.49.1.0' // SQLite JDBC 驱动
-    implementation 'com.github.gwenn:sqlite-dialect:0.1.2' // Hibernate SQLite 方言
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // MyBatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+    // 数据库驱动
+    implementation 'org.xerial:sqlite-jdbc:3.49.1.0'
+    implementation 'org.hibernate.orm:hibernate-community-dialects'
+    //runtimeOnly 'org.xerial:sqlite-jdbc:3.49.1.0' // SQLite JDBC 驱动
+    // implementation 'com.github.gwenn:sqlite-dialect:0.1.2' // Hibernate SQLite 方言
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
+
+    // Servlet
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
+    // 测试依赖
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
