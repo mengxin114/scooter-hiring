@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequestMapping("/User")
@@ -40,4 +43,10 @@ public class UserController {
         String username = claims.getSubject();
         return Result.success("Hello, " + username);
     }
+
+    @PostMapping("/register")
+    public Result<String> register(@RequestBody User user) {
+        return userService.register(user);
+    }
+
 }

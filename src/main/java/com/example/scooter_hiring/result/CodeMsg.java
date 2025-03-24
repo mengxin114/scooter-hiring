@@ -16,14 +16,15 @@ public class CodeMsg {
     public static CodeMsg MOBILE_EMPTY = new CodeMsg(500212, "手机号不能为空");
     public static CodeMsg MOBILE_ERROR = new CodeMsg(500213, "手机号格式错误");
     public static CodeMsg MOBILE_NOT_EXIST = new CodeMsg(500214, "手机号不存在");
-    public static CodeMsg PASSWORD_ERROR = new CodeMsg(500215, "密码错误");
-    public static CodeMsg USER_NOT_EXIST = new CodeMsg(500216, "用户不存在");
-    public static CodeMsg USER_EXIST = new CodeMsg(500217, "用户已存在");
-    public static CodeMsg USER_NOT_LOGIN = new CodeMsg(500218, "用户未登录");
-    public static CodeMsg USER_NOT_REGISTER = new CodeMsg(500219, "用户未注册");
-    public static CodeMsg USER_ALREADY_LOGIN = new CodeMsg(500220, "用户已登录");
-    public static CodeMsg USER_ALREADY_REGISTER = new CodeMsg(500221, "用户已注册");
-    public static CodeMsg USER_ALREADY_LOGOUT = new CodeMsg(500222, "用户已登出");
+    public static CodeMsg MOBILE_ALREADY_EXIST = new CodeMsg(500215, "手机号已被使用");
+    public static CodeMsg PASSWORD_ERROR = new CodeMsg(500216, "密码错误");
+    public static CodeMsg USER_NOT_EXIST = new CodeMsg(500217, "用户不存在");
+    public static CodeMsg USER_EXIST = new CodeMsg(500218, "用户已存在");
+    public static CodeMsg USER_NOT_LOGIN = new CodeMsg(500219, "用户未登录");
+    public static CodeMsg USER_NOT_REGISTER = new CodeMsg(500220, "用户未注册");
+    public static CodeMsg USER_ALREADY_LOGIN = new CodeMsg(500221, "用户已登录");
+    public static CodeMsg USER_ALREADY_REGISTER = new CodeMsg(500222, "用户已注册");
+    public static CodeMsg USER_ALREADY_LOGOUT = new CodeMsg(500223, "用户已登出");
     
     //构造函数
     private CodeMsg() {

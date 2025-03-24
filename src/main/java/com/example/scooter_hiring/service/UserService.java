@@ -9,11 +9,6 @@ import com.example.scooter_hiring.util.JwtUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-
-
-
-
 @Service
 public class UserService {
 
@@ -30,12 +25,12 @@ public class UserService {
         if (user == null) {
             throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
         }
-        //更新数据库
+        // 更新数据库
         User toBeUpdate = new User();
         toBeUpdate.setId(id);
-        //密码存储需要加密
+        // 密码存储需要加密
         toBeUpdate.setPassword(password);
-        userMapper.update(toBeUpdate);
+        userMapper.updatePassword(id, password);
         return true;
     }
 
@@ -44,14 +39,31 @@ public class UserService {
         if (user == null) {
             throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
         }
-        //验证密码
+        // 验证密码
         String dbPass = user.getPassword();
         if (!formPass.equals(dbPass)) {
             throw new GlobalException(CodeMsg.PASSWORD_ERROR);
         }
 
-        //生成cookie
+        // 生成cookie
         String token = JwtUtil.generateToken(mobile);
         return token;
+    }
+
+    public Result<String> register(User user) {
+        if (user == null) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        long mobile = user.getId();
+        String formPass = user.getPassword();
+        // 判断手机号是否已经注册
+        User user1 = getById(mobile);
+        if (user1 != null) {
+            throw new GlobalException(CodeMsg.MOBILE_ALREADY_EXIST);
+        }
+        // 密码加密
+        user.setPassword(formPass);
+        userMapper.insert(user);
+        return Result.success("success");
     }
 }

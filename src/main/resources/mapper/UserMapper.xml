@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.scooter_hiring.mapper.UserMapper">
+    <!-- 根据id获取用户 -->
+    <select id="getUserById" resultType="com.example.scooter_hiring.bean.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <!-- 更新用户密码 -->
+    <update id="updatePassword">
+        UPDATE user SET password = #{password} WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户登录信息 -->
+    <update id="updateLoginInfo">
+        UPDATE user SET last_login_date = #{lastLoginDate}, login_count = #{loginCount} WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户名 -->
+    <update id="updateUserName">
+        UPDATE user SET user_name = #{userName} WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户手机号 -->
+    <update id="updateMobile">
+        UPDATE user SET mobile = #{mobile} WHERE id = #{id}
+    </update>
+
+    <!-- 新建用户 -->
+    <insert id="insert">
+        INSERT INTO user (id, user_name, mobile, password, last_login_date, login_count)
+        VALUES (#{id}, #{userName}, #{mobile}, #{password}, #{lastLoginDate}, #{loginCount})
+    </insert>
+</mapper>
